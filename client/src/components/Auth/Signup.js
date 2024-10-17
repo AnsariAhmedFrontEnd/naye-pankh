@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Handle signup logic here
-    console.log("Name:", name);
-    console.log("Email:", email);
-    console.log("Password:", password);
+    const newUser = { name, email, password };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/signup",
+        newUser,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(response.data);
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -23,6 +37,12 @@ const Signup = () => {
         <div className="col-md-4">
           <div className="card p-4">
             <h3 className="text-center mb-4">Sign Up</h3>
+            <p className="text-center">
+              Don't have an account
+              <Link className="text-decoration-none ms-2" to="/">
+                Login Now
+              </Link>
+            </p>
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label htmlFor="name" className="form-label">
@@ -68,7 +88,7 @@ const Signup = () => {
               </div>
 
               <div className="d-grid gap-2">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn btn-danger">
                   Sign Up
                 </button>
               </div>

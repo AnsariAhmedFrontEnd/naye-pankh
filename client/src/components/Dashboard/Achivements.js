@@ -35,10 +35,10 @@ const Achivements = () => {
           <div className="row">
             <div className="d-flex align-items-center justify-content-evenly">
               <button className="button">
-                <i class="fa-regular fa-star"></i> Rewards
+                <i className="fa-regular fa-star"></i> Rewards
               </button>
               <button className="button" onClick={copyLinkHandler}>
-                <i class="fa-regular fa-copy"></i> Copy Donation Link
+                <i className="fa-regular fa-copy"></i> Copy Donation Link
               </button>
             </div>
             <i className="text-center mt-3 mb-4">
@@ -64,7 +64,7 @@ const Achivements = () => {
       </div>
       <div className="row">
         <button className="button w-25" onClick={shareOnWhatsapp}>
-          <i class="fa-solid fa-arrow-up-from-bracket me-2"></i>Share On
+          <i className="fa-solid fa-arrow-up-from-bracket me-2"></i>Share On
           Whatsapp
         </button>
       </div>

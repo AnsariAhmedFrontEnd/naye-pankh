@@ -10,10 +10,10 @@ import Signup from "./components/Auth/Signup";
 function App() {
   return (
     <Routes>
-      <Route path="/login" element={<Login />}/>
+      <Route path="/" element={<Login />}/>
       <Route path="/signup" element={<Signup />}/>
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <Layout>
             <Dashboard />
