@@ -1,0 +1,68 @@
+.progress {
+  width: 13rem;
+  height: 13rem;
+  border: 8px dashed rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  background-color: white;
+}
+
+.targated-progess {
+  width: 13rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.goal-title {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  color: #ea4633;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.goal-achieved {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.hr-1 {
+  border-radius: 2rem 2rem 2rem 2rem;
+  border-width: 0.3rem;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.hr-2 {
+  border-radius: 2rem 2rem 2rem 2rem;
+  border-width: 0.3rem;
+  border-color: rgb(255, 0, 0);
+}
+
+.button {
+  background: linear-gradient(
+    45deg,
+    rgb(208, 72, 69) 0%,
+    rgb(98, 81, 146) 100%
+  );
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+}
+
+.button:hover {
+    background: linear-gradient(
+        45deg,
+        rgb(148, 33, 31) 0%,
+        rgb(73, 49, 139) 100%
+      );
+}
