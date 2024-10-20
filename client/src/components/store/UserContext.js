@@ -12,7 +12,7 @@ const UserProvider = ({ children }) => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/auth", {
+        const response = await axios.get("https://naye-pankh.onrender.com/auth", {
           withCredentials: true,
         });
         console.log(response.data);

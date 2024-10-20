@@ -7,7 +7,7 @@ const Achivements = () => {
   const { user } = useContext(UserContext);
   
   const copyLinkHandler = async () => {
-    const linkToCopy = `http://localhost:3000/donate/${user.referralCode}`;
+    const linkToCopy = `https://naye-pankh.onrender.com/donate/${user.referralCode}`;
     console.log(linkToCopy);
     try {
       await navigator.clipboard.writeText(linkToCopy);

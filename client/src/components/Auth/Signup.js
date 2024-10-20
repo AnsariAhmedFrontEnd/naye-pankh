@@ -16,7 +16,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/signup",
+        "https://naye-pankh.onrender.com/signup",
         newUser,
         {
           withCredentials: true,
