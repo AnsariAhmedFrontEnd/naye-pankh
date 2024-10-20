@@ -34,11 +34,11 @@ const Signup = () => {
     <>
       <Navbar />
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="col-md-4">
-          <div className="card p-4">
+        <div className="col-12 col-md-8 col-lg-5">
+          <div className="card p-4 shadow-sm">
             <h3 className="text-center mb-4">Sign Up</h3>
             <p className="text-center">
-              Don't have an account
+              Already have an account?
               <Link className="text-decoration-none ms-2" to="/">
                 Login Now
               </Link>
@@ -88,7 +88,7 @@ const Signup = () => {
               </div>
 
               <div className="d-grid gap-2">
-                <button type="submit" className="btn btn-danger">
+                <button type="submit" className="btn btn-danger w-100">
                   Sign Up
                 </button>
               </div>

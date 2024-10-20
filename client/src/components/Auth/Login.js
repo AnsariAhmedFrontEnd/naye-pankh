@@ -10,7 +10,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const { login, loading } = useContext(UserContext);
+  const { login } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +25,6 @@ const Login = () => {
         }
       );
       toast.success(response.data.msg);
-      console.log(response.data);
       const userData = {
         name: response.data.userName,
         referralCode: response.data.referralCode,
@@ -42,11 +41,11 @@ const Login = () => {
     <>
       <Navbar />
       <div className="container d-flex justify-content-center align-items-center min-vh-100">
-        <div className="col-md-4">
-          <div className="card p-4">
+        <div className="col-12 col-md-8 col-lg-5">
+          <div className="card p-4 shadow-sm">
             <h3 className="text-center mb-4">Login</h3>
             <p className="text-center">
-              Don't have an account
+              Don't have an account?
               <Link className="text-decoration-none ms-2" to="/signup">
                 Signup Now
               </Link>
@@ -81,7 +80,7 @@ const Login = () => {
                 />
               </div>
               <div className="d-grid gap-2">
-                <button type="submit" className="btn btn-danger">
+                <button type="submit" className="btn btn-danger w-100">
                   Login
                 </button>
               </div>

@@ -9,3 +9,29 @@
   border-radius: 1rem;
   cursor: pointer;
 }
+
+
+.sidebar {
+  background-color: white;
+  transition: width 0.3s;
+}
+
+.sidebar-options-active {
+  background-color: #e7f1ff; /* Active option background */
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Full width on mobile */
+    position: relative; /* Change from fixed to relative */
+    display: none; /* Initially hidden */
+  }
+
+  .sidebar.active {
+    display: block; /* Show when active */
+  }
+
+  .toggle-sidebar {
+    display: block; /* Show toggle button on mobile */
+  }
+}

@@ -10,28 +10,36 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const logoutHandler = async () => {
-    const response = await axios.post(
-      "http://localhost:5000/logout",
-      {},
-      { withCredentials: true }
-    );
-    console.log(response.data);
-    toast.success(response.data.msg);
-    logout();
-    navigate("/");
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/logout",
+        {},
+        { withCredentials: true }
+      );
+      toast.success(response.data.msg);
+      logout();
+      navigate("/");
+    } catch (error) {
+      console.error("Logout error:", error);
+      toast.error("Logout failed. Please try again.");
+    }
   };
+
   return (
     <nav className="d-flex h-25 justify-content-end align-items-center mh-100">
       <div
         className="d-flex pe-5 py-3 align-items-center profile-hover"
         onClick={logoutHandler}
+        role="button" // Improve accessibility
+        tabIndex="0" // Make the div focusable
+        onKeyPress={(e) => { if (e.key === 'Enter') logoutHandler(); }} // Enable keyboard navigation
+        aria-label="Logout" // Accessibility label
       >
         <img
           src="images/profile.jfif"
-          alt="profile"
+          alt="Profile"
           style={{ width: "40px", height: "40px", borderRadius: "0.75rem" }}
         />
-
         <div className="ms-3">
           <p className="mb-0 fw-bold">{user.name}</p>
           <div className="d-flex align-items-center">
