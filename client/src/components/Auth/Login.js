@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "./Navbar";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { UserContext } from "../store/UserContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const { login, loading } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,8 +24,14 @@ const Login = () => {
           withCredentials: true,
         }
       );
-
+      toast.success(response.data.msg);
       console.log(response.data);
+      const userData = {
+        name: response.data.userName,
+        referralCode: response.data.referralCode,
+      };
+
+      login(userData);
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

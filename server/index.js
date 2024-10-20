@@ -43,10 +43,28 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
+// Helper function to generate a referral code
+const generateReferralCode = (name) => {
+  const randomNum = Math.floor(1000 + Math.random() * 9000);
+  const cleanedName = name.replace(/\s+/g, "");
+  return `${cleanedName}${randomNum}`.toLowerCase(); // Generate referral code
+};
+
 //Signup Route
 
 app.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
+  let referralCode;
+  let isUnique = false;
+
+  // Try generating unique referral code
+  while (!isUnique) {
+    referralCode = generateReferralCode(name);
+    const existingUser = await UserModal.findOne({ referralCode });
+    if (!existingUser) {
+      isUnique = true;
+    }
+  }
 
   try {
     let user = await UserModal.findOne({ email });
@@ -60,6 +78,7 @@ app.post("/signup", async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      referralCode,
     });
 
     await user.save();
@@ -71,6 +90,7 @@ app.post("/signup", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
+      sameSite:"lax",
       maxAge: 30 * 60 * 1000,
     });
 
@@ -104,14 +124,55 @@ app.post("/login", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       secure: false,
+      sameSite:"lax",
       maxAge: 3 * 60 * 1000,
     });
 
-    return res
-      .status(200)
-      .json({ msg: "Login successfull", token, userName: user.name });
+    return res.status(200).json({
+      msg: "Login successfull",
+      userName: user.name,
+      referralCode: user.referralCode,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json("Server error");
   }
+});
+
+//authMiddleware
+
+const authMiddleware = (req, res, next) => {
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).json({ msg: "Unauthorized" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.userId = decoded.id;
+    next();
+  } catch (error) {
+    return res.status(401).json({ msg: "Token is not valid" });
+  }
+};
+
+app.get("/auth", authMiddleware, async (req, res) => {
+  try {
+    const user = await UserModal.findById(req.userId).select("-password");
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    res.status(200).json({ name:user.name, referralCode: user.referralCode });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json("Server error");
+  }
+});
+
+//Logout
+
+app.post("/logout", (req, res) => {
+  res.clearCookie("token"); 
+  res.status(200).json({ msg: "Logged out successfully" });
 });

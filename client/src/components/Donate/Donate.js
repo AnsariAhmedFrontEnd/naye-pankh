@@ -19,15 +19,15 @@ const Donate = () => {
     <div className="container-fluid bg-dark w-100 min-vh-100 p-5">
       <div className="row bg-white w-75 mx-auto p-4">
         <div className="col-3">
-          <div class="card">
+          <div className="card">
             <img
-              src="images/kids1.webp"
-              class="card-img-top"
+              src="/images/kids1.webp"
+              className="card-img-top"
               alt="..."
               style={{ height: "10rem", objectFit: "cover" }}
             />
-            <div class="card-body">
-              <h5 class="card-title mt-3 mb-5">
+            <div className="card-body">
+              <h5 className="card-title mt-3 mb-5">
                 Contribute towards a child's education for 12 Months
               </h5>
 
@@ -45,15 +45,15 @@ const Donate = () => {
           </div>
         </div>
         <div className="col-3">
-          <div class="card">
+          <div className="card">
             <img
-              src="images/kids2.jpg"
-              class="card-img-top"
+              src="/images/kids2.jpg"
+              className="card-img-top"
               alt="..."
               style={{ height: "10rem", objectFit: "cover" }}
             />
-            <div class="card-body">
-              <h5 class="card-title mt-3 mb-5">
+            <div className="card-body">
+              <h5 className="card-title mt-3 mb-5">
                 Contribute towards a child's education for 6 Months
               </h5>
 
@@ -68,15 +68,15 @@ const Donate = () => {
           </div>
         </div>
         <div className="col-3">
-          <div class="card">
+          <div className="card">
             <img
-              src="images/kids3.avif"
-              class="card-img-top"
+              src="/images/kids3.avif"
+              className="card-img-top"
               alt="..."
               style={{ height: "10rem", objectFit: "cover" }}
             />
-            <div class="card-body">
-              <h5 class="card-title mt-3 mb-5">
+            <div className="card-body">
+              <h5 className="card-title mt-3 mb-5">
                 Contribute towards a child's education for 3 Months
               </h5>
 
@@ -91,15 +91,15 @@ const Donate = () => {
           </div>
         </div>
         <div className="col-3">
-          <div class="card">
+          <div className="card">
             <img
-              src="images/kids4.webp"
-              class="card-img-top"
+              src="/images/kids4.webp"
+              className="card-img-top"
               alt="..."
               style={{ height: "10rem", objectFit: "cover" }}
             />
-            <div class="card-body">
-              <h5 class="card-title mt-3 mb-5">
+            <div className="card-body">
+              <h5 className="card-title mt-3 mb-5">
                 Contribute towards a child's education for 2 Months
               </h5>
 

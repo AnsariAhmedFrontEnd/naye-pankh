@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Achivements.css";
-import { msg } from "../data";
+import { generateMsg } from "../data";
+import { UserContext } from "../store/UserContext";
 
 const Achivements = () => {
-  const copyLinkHandler = () => {
-    alert("Link is now copied to the clipboard!");
+  const { user } = useContext(UserContext);
+  const copyLinkHandler = async () => {
+    const linkToCopy = `http://localhost:3000/donate/${user.referralCode}`;
+    console.log(linkToCopy)
+    try {
+      await navigator.clipboard.writeText(linkToCopy);
+      alert("Link is now copied to the clipboard!"); // Notify the user
+    } catch (err) {
+      console.error("Failed to copy: ", err);
+    }
   };
-
   const shareOnWhatsapp = () => {
+    const msg = generateMsg(user.referralCode);
+    console.log(msg);
     const url = `https://wa.me/?text=${encodeURIComponent(msg.msg)}`;
-    window.open(url, "_blank"); // Opens the WhatsApp share link in a new tab
+    window.open(url, "_blank");
   };
 
   return (
@@ -56,7 +66,8 @@ const Achivements = () => {
           </div>
           <div className="d-flex justify-content-center row text-center">
             <p className="fw-bold text-danger">
-              Reference Code: <span className="text-dark">sdafhas5</span>
+              Reference Code:{" "}
+              <span className="text-dark">{user.referralCode}</span>
             </p>
             <button className="button w-50 mb-5">Start Here</button>
           </div>

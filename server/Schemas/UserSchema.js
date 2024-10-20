@@ -13,6 +13,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  referralCode: {
+    type: String,
+    unique: true,
+  },
 });
 
-module.exports = UserSchema ;
+module.exports = UserSchema;
