@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://naye-pankh.netlify.app",
     credentials: true,
   })
 );
@@ -89,7 +89,7 @@ app.post("/signup", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       sameSite:"lax",
       maxAge: 30 * 60 * 1000,
     });
@@ -123,7 +123,7 @@ app.post("/login", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production", // Use secure cookies in production
       sameSite:"lax",
       maxAge: 3 * 60 * 1000,
     });
